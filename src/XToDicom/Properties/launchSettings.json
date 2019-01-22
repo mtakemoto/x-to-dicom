@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "XToDicom": {
+      "commandName": "Project",
+      "commandLineArgs": "--in C:\\Users\\Matt\\Downloads\\sample.mp4 --out C:\\Users\\Matt\\Downloads\\dicomOut.dcm"
+    }
+  }
+}
