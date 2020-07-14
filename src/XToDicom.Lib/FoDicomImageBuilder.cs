@@ -11,20 +11,23 @@ namespace XToDicom.Lib
         private DicomImage Image { get; set; }
         private DicomDataset DataSet { get; set; }
         private DicomPixelData PixelData { get; set; }
-        public string OutputPath { get; }
-
-        public FoDicomImageBuilder(string outputPath, int width, int height)
-        {
-            this.OutputPath = outputPath;
-            this.DataSet = this.ConfigureDataSet(width, height);
-            this.PixelData = this.CreatePixelData(width, height);
-        }
 
         // From file path
         public FoDicomImageBuilder AddImage(byte[] data)
         {
             var byteBuffer = new MemoryByteBuffer(data);
             this.PixelData.AddFrame(byteBuffer);
+
+            return this;
+        }
+
+        public FoDicomImageBuilder FromImageCollection(IImageCollection imageCollection)
+        {
+            int width = imageCollection.Width;
+            int height = imageCollection.Height;
+
+            this.DataSet = this.ConfigureDataSet(width, height);
+            this.PixelData = this.CreatePixelData(width, height);
 
             return this;
         }
@@ -98,10 +101,10 @@ namespace XToDicom.Lib
 
 
         //TODO: use async
-        public void Build()
+        public void Build(string outputPath)
         {
             var image = new DicomFile(this.DataSet);
-            image.Save(this.OutputPath);
+            image.Save(outputPath);
         }
     }
 }

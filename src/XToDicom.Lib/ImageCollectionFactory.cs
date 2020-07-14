@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using Serilog;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,28 +9,30 @@ namespace XToDicom.Lib
 {
     public class ImageCollectionFactory : IImageCollectionFactory
     {
-        public string FilePath { get; }
-        public string Extension { get; }
+        private readonly ILogger logger;
+        private readonly IFrameExtractor frameExtractor;
 
-        public ImageCollectionFactory(string filePath)
+        public ImageCollectionFactory(ILogger logger, IFrameExtractor frameExtractor)
         {
-            this.FilePath = filePath;
-            this.Extension = this.GetFileExtension(filePath);
+            this.logger = logger;
+            this.frameExtractor = frameExtractor;
         }
 
-        public IImageCollection Create()
+        public IImageCollection Create(string filePath)
         {
             IImageCollection imageCollection = null;
-            switch (this.Extension)
+            string extension = this.GetFileExtension(filePath);
+            logger.Information("Detected file with extension {ext}", extension);
+
+            switch (extension)
             {
                 case ".gif":
-                    imageCollection = this.CreateGif(this.FilePath);
+                    imageCollection = this.CreateFromGif(filePath);
                     break;
                 case ".mp4":
                 case ".avi":
-                    imageCollection = this.CreateFromVideo(this.FilePath);
+                    imageCollection = this.CreateFromVideo(filePath);
                     break;
-
             }
 
             return imageCollection;
@@ -38,9 +41,9 @@ namespace XToDicom.Lib
         //TODO: handle null case
         //TODO: ensure all frames are same size
         //TODO: consider making each of these their own factory if it gets too big
-        private IImageCollection CreateGif(string path)
+        private IImageCollection CreateFromGif(string filePath)
         {
-            var data = new MagickImageCollection(path);
+            var data = new MagickImageCollection(filePath);
             var firstFrame = data.First();
             var retVal = new ImageCollection()
             {
@@ -55,17 +58,15 @@ namespace XToDicom.Lib
             return retVal;
         }
 
-        //TODO: this is messy use DI to get a frameextractor
         //TODO: see if we can do this without needing to convert to GIF first
-        private IImageCollection CreateFromVideo(string path)
+        private IImageCollection CreateFromVideo(string filePath)
         {
-            var frameExtractor = new FrameExtractor(path);
             var gifName = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + FileExtensions.Gif);
-            var gif = frameExtractor.ToGif();
+            var gif = frameExtractor.ToGif(filePath);
 
             gif.Wait();
 
-            return this.CreateGif(gif.Result);
+            return this.CreateFromGif(gif.Result);
         }
 
         public string GetFileExtension(string fileName)

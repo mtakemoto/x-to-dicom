@@ -8,10 +8,12 @@ namespace XToDicom.Lib
     public class Converter : IConverter
     {
         private readonly ILogger logger;
+        private readonly IImageCollectionFactory imageFactory;
 
-        public Converter(ILogger logger)
+        public Converter(ILogger logger, IImageCollectionFactory imageFactory)
         {
             this.logger = logger;
+            this.imageFactory = imageFactory;
         }
 
         //TODO: test paths for error handling
@@ -33,22 +35,21 @@ namespace XToDicom.Lib
             var outPath = output;
 
             logger.Information($"Processing file {input}");
-            var imageFactory = new ImageCollectionFactory(inPath);
-
-            using (IImageCollection collection = imageFactory.Create())
+            using (IImageCollection collection = imageFactory.Create(inPath))
             {
-                var imageBuilder = new FoDicomImageBuilder(outPath, collection.Width, collection.Height)
+                var imageBuilder = new FoDicomImageBuilder()
+                    .FromImageCollection(collection)
                     .WithDefaultPatientData();
 
                 for (int i = 0; i < collection.Data.Count; i++)
                 {
-                    logger.Information($"Adding image {i + 1} of {collection.Data.Count}");
+                    logger.Information($"Adding frame {i + 1} of {collection.Data.Count}");
                     var byteData = collection.Data[i].GetPixels().ToByteArray(PixelMapping.RGB);
 
                     imageBuilder.AddImage(byteData);
                 }
 
-                imageBuilder.Build();
+                imageBuilder.Build(outPath);
             }
 
             logger.Information($"File successfully written to {outPath}");

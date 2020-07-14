@@ -2,10 +2,7 @@
 {
     public interface IImageCollectionFactory
     {
-        string Extension { get; }
-        string FilePath { get; }
-
-        IImageCollection Create();
+        IImageCollection Create(string filePath);
         string GetFileExtension(string fileName);
     }
 }

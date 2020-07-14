@@ -5,11 +5,8 @@ namespace XToDicom.Lib
 {
     public interface IFrameExtractor
     {
-        IMediaInfo FileInfo { get; }
-        string FileName { get; }
-
-        Task<string> GetFrame(int frameNumber);
+        Task<string> GetFrame(string fileName, int frameNumber);
         Task<IMediaInfo> GetInfo(string fileName);
-        Task<string> ToGif();
+        Task<string> ToGif(string fileName);
     }
 }
