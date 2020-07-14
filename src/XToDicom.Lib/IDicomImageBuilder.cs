@@ -1,9 +1,12 @@
-﻿namespace XToDicom.Lib
+﻿using Dicom;
+
+namespace XToDicom.Lib
 {
     public interface IDicomImageBuilder
     {
         FoDicomImageBuilder AddImage(byte[] data);
-        void Build(string outputPath);
+        DicomFile Build();
+        FoDicomImageBuilder FromImageCollection(IImageCollection imageCollection);
         FoDicomImageBuilder WithDefaultPatientData();
     }
 }

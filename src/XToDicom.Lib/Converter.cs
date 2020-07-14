@@ -49,7 +49,8 @@ namespace XToDicom.Lib
                     imageBuilder.AddImage(byteData);
                 }
 
-                imageBuilder.Build(outPath);
+                var image = imageBuilder.Build();
+                image.Save(outPath);
             }
 
             logger.Information($"File successfully written to {outPath}");

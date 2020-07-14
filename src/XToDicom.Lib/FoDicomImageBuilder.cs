@@ -8,7 +8,6 @@ namespace XToDicom.Lib
 {
     public class FoDicomImageBuilder : IDicomImageBuilder
     {
-        private DicomImage Image { get; set; }
         private DicomDataset DataSet { get; set; }
         private DicomPixelData PixelData { get; set; }
 
@@ -101,10 +100,10 @@ namespace XToDicom.Lib
 
 
         //TODO: use async
-        public void Build(string outputPath)
+        //TODO: abstract the dicom library out while providing better testability
+        public DicomFile Build()
         {
-            var image = new DicomFile(this.DataSet);
-            image.Save(outputPath);
+            return new DicomFile(this.DataSet);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace XToDicom.Lib
         public async Task<IMediaInfo> GetInfo(string fileName)
             => await MediaInfo.Get(fileName);
 
+        //TODO: proof-of-concept for getting frames from .mp4 directly
         public async Task<string> GetFrame(string fileName, int frameNumber)
         {
             var info = await this.GetInfo(fileName);
