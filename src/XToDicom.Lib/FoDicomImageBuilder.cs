@@ -101,9 +101,6 @@ namespace XToDicom.Lib
 
         //TODO: use async
         //TODO: abstract the dicom library out while providing better testability
-        public DicomFile Build()
-        {
-            return new DicomFile(this.DataSet);
-        }
+        public DicomFile Build() => new DicomFile(this.DataSet);
     }
 }

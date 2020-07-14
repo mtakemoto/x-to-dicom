@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\XToDicom.Lib\XToDicom.Lib.csproj" />
+    <ProjectReference Include="..\..\..\src\XToDicom.Lib\XToDicom.Lib.csproj" />
   </ItemGroup>
 
 </Project>
