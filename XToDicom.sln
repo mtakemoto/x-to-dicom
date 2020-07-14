@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XToDicom.Cli", "src\XToDicom\XToDicom.Cli.csproj", "{1D27D2DC-E1D6-4C84-B804-3CDB4DFA01C0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7420D939-9268-490E-AD4C-9B616557B15A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -15,16 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XToDicom.Lib", "src\XToDico
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XToDicom.Tests", "test\unit\XToDicom.Tests\XToDicom.Tests.csproj", "{A770BAE8-CE04-4BA7-8272-9B56F8113A4D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XToDicom.Cli", "src\XToDicom.Cli\XToDicom.Cli.csproj", "{4DCFC76C-79D0-44E2-85E2-4072D0D15FE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D27D2DC-E1D6-4C84-B804-3CDB4DFA01C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D27D2DC-E1D6-4C84-B804-3CDB4DFA01C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D27D2DC-E1D6-4C84-B804-3CDB4DFA01C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D27D2DC-E1D6-4C84-B804-3CDB4DFA01C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27FB3D96-B7B0-4B74-A95F-5414BA6AAF36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27FB3D96-B7B0-4B74-A95F-5414BA6AAF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27FB3D96-B7B0-4B74-A95F-5414BA6AAF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{A770BAE8-CE04-4BA7-8272-9B56F8113A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A770BAE8-CE04-4BA7-8272-9B56F8113A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A770BAE8-CE04-4BA7-8272-9B56F8113A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCFC76C-79D0-44E2-85E2-4072D0D15FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCFC76C-79D0-44E2-85E2-4072D0D15FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCFC76C-79D0-44E2-85E2-4072D0D15FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCFC76C-79D0-44E2-85E2-4072D0D15FE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
