@@ -10,7 +10,7 @@ namespace XToDicom
     {
         static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Options>(args)
+            Parser.Default.ParseArguments<CommandLineOptions>(args)
                 .WithParsed(o =>
                 {
                     ConvertFileToDicom.SingleFile(o.InputFilePath, o.OutputFilePath);
