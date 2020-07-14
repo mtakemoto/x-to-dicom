@@ -6,7 +6,7 @@ using Xabe.FFmpeg.Enums;
 
 namespace XToDicom.Lib
 {
-    class ImageCollectionFactory
+    public class ImageCollectionFactory : IImageCollectionFactory
     {
         public string FilePath { get; }
         public string Extension { get; }
@@ -29,7 +29,7 @@ namespace XToDicom.Lib
                 case ".avi":
                     imageCollection = this.CreateFromVideo(this.FilePath);
                     break;
-                
+
             }
 
             return imageCollection;

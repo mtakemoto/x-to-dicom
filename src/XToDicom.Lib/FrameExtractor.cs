@@ -8,7 +8,7 @@ using Xabe.FFmpeg.Model;
 
 namespace XToDicom.Lib
 {
-    class FrameExtractor
+    public class FrameExtractor : IFrameExtractor
     {
         public string FileName { get; }
         public IMediaInfo FileInfo { get; }
@@ -37,11 +37,12 @@ namespace XToDicom.Lib
             return outputPath;
         }
 
-        public async Task<string> ToGif() {
+        public async Task<string> ToGif()
+        {
             string outputPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + FileExtensions.Gif);
             await Conversion.ToGif(this.FileName, outputPath, 1).Start();
 
             return outputPath;
-        } 
+        }
     }
 }

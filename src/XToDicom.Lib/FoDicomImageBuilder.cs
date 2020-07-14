@@ -6,14 +6,14 @@ using System.Text;
 
 namespace XToDicom.Lib
 {
-    public class DicomImageBuilder
+    public class FoDicomImageBuilder : IDicomImageBuilder
     {
         private DicomImage Image { get; set; }
         private DicomDataset DataSet { get; set; }
         private DicomPixelData PixelData { get; set; }
         public string OutputPath { get; }
 
-        public DicomImageBuilder(string outputPath, int width, int height)
+        public FoDicomImageBuilder(string outputPath, int width, int height)
         {
             this.OutputPath = outputPath;
             this.DataSet = this.ConfigureDataSet(width, height);
@@ -21,7 +21,7 @@ namespace XToDicom.Lib
         }
 
         // From file path
-        public DicomImageBuilder AddImage(byte[] data)
+        public FoDicomImageBuilder AddImage(byte[] data)
         {
             var byteBuffer = new MemoryByteBuffer(data);
             this.PixelData.AddFrame(byteBuffer);
@@ -31,7 +31,7 @@ namespace XToDicom.Lib
 
         // TODO: copypasta'd from GitHub to work initially - send help
         // Source: https://gist.github.com/mdubey82/4030263
-        public DicomImageBuilder WithDefaultPatientData()
+        public FoDicomImageBuilder WithDefaultPatientData()
         {
             //type 1 attributes.
             this.DataSet.Add(DicomTag.SOPClassUID, DicomUID.MultiFrameTrueColorSecondaryCaptureImageStorage);
