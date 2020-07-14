@@ -1,23 +1,26 @@
 Multipurpose DICOM Converter (name WIP)
 ==============================================
 
-# Goal
-- Create a utility that converts any moving picture file into DICOM for easy and fun test image generation for medical software.
-- Be cross-platform because we can
-- Provide this as a web service one day
+## Background
+Inspired by shared frustrations with a coworker about not having any "fun" test images to use when developing our company software, I built this in my spare time.  It's built to solve a couple of problems:
 
-# Supported Formats
+1. No easy way to get test medical images.
+1. Any medical images you get might have real patient data.
+1. Even if the data is blinded, some studies are pretty gnarly.
+1. So if your requirements are low, why not use something fun like a cat GIF from the internet?
+
+## Supported Formats
 1. GIF
 1. MP4
 1. AVI
 
-# Getting Started
+## Getting Started
 1. Install [FFMPEG](http://ffmpeg.org/download.html) and make sure it's added to your path
 1. Acquire a file in any format above from your favorite source (i.e. https://www.reddit.com/r/cinemagraphs)
 1. Build the solution
 1. In a command prompt, `cd` to the bin folder
 
-# Usage & Examples
+## Usage & Examples
 Generate a DICOM file from an `mp4` on Windows:
 
 `.\XToDicom.Cli.exe --in C:\sample.mp4 --out C:\dicomOut.dcm`
