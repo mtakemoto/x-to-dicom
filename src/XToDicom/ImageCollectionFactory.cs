@@ -49,6 +49,9 @@ namespace XToDicom
                 Height = firstFrame.Height
             };
 
+            //Required to un-compress the non-first image frames
+            retVal.Data.Coalesce();
+
             return retVal;
         }
 

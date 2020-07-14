@@ -34,7 +34,7 @@ namespace XToDicom
         public DicomImageBuilder WithDefaultPatientData()
         {
             //type 1 attributes.
-            this.DataSet.Add(DicomTag.SOPClassUID, DicomUID.SecondaryCaptureImageStorage);
+            this.DataSet.Add(DicomTag.SOPClassUID, DicomUID.MultiFrameTrueColorSecondaryCaptureImageStorage);
             this.DataSet.Add(DicomTag.StudyInstanceUID, this.GenerateUid());
             this.DataSet.Add(DicomTag.SeriesInstanceUID, this.GenerateUid());
             this.DataSet.Add(DicomTag.SOPInstanceUID, this.GenerateUid());
@@ -80,13 +80,14 @@ namespace XToDicom
             pd.PlanarConfiguration = 0;
             pd.Height = (ushort)height;
             pd.Width = (ushort)width;
+            pd.PhotometricInterpretation = PhotometricInterpretation.Rgb;
 
             return pd;
         }
 
         private DicomDataset ConfigureDataSet(int width, int height)
         {
-            var ds = new DicomDataset();
+            var ds = new DicomDataset(DicomTransferSyntax.ExplicitVRLittleEndian);
             ds.AddOrUpdate(DicomTag.PhotometricInterpretation, PhotometricInterpretation.Rgb.Value);
             ds.AddOrUpdate(DicomTag.Rows, (ushort)width);
             ds.AddOrUpdate(DicomTag.Columns, (ushort)height);

@@ -12,7 +12,6 @@ namespace XToDicom
             var outPath = output;
 
             Console.WriteLine($"Processing file {input}");
-
             var imageFactory = new ImageCollectionFactory(inPath);
 
             using (IImageCollection collection = imageFactory.Create())
@@ -20,14 +19,11 @@ namespace XToDicom
                 var imageBuilder = new DicomImageBuilder(outPath, collection.Width, collection.Height)
                     .WithDefaultPatientData();
 
-                /* BUG
-                 * Only the 1st image has the correct color.
-                 */
-
                 for (int i = 0; i < collection.Data.Count; i++)
                 {
                     Console.WriteLine($"Adding image {i + 1} of {collection.Data.Count}");
                     var byteData = collection.Data[i].GetPixels().ToByteArray(PixelMapping.RGB);
+                    
                     imageBuilder.AddImage(byteData);
                 }
 
