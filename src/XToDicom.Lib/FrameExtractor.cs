@@ -6,7 +6,7 @@ using System.IO;
 using Xabe.FFmpeg.Enums;
 using Xabe.FFmpeg.Model;
 
-namespace XToDicom
+namespace XToDicom.Lib
 {
     class FrameExtractor
     {

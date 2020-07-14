@@ -1,7 +1,7 @@
 ﻿using ImageMagick;
 using System;
 
-namespace XToDicom
+namespace XToDicom.Lib
 {
     public class ImageCollection : IImageCollection
     {

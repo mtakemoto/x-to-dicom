@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using XToDicom.Lib;
 
 namespace XToDicom
 {

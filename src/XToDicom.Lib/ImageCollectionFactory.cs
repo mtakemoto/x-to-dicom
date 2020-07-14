@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Xabe.FFmpeg.Enums;
 
-namespace XToDicom
+namespace XToDicom.Lib
 {
     class ImageCollectionFactory
     {

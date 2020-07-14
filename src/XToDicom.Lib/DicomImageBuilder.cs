@@ -4,7 +4,7 @@ using Dicom.IO.Buffer;
 using System;
 using System.Text;
 
-namespace XToDicom
+namespace XToDicom.Lib
 {
     public class DicomImageBuilder
     {
